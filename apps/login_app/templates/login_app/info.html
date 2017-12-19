@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Trip Info</title>
+  <link rel="stylesheet" href="{% static '/login_app/style.css' %}" media="screen" title="styler" charset="utf-8">
+</head>
+<body>
+  <h3>Trip Details</h3>
+  <!-- i'm pretty tired so here's what you'll do later.  you're gonna snag that trip_id off the link from the dashboard, then you wanna have that shit print up on this page right here.  Also display all the users who are signed up for that trip as well, grabbing their foreign key from the joined_by table, DON'T FUCK THIS UP-->
+</body>
+<p>Created by: {{ trip.user.first_name }} {{ trip.user.last_name}}</p>
+<p>Destination: {{ trip.destination }}</p>
+<p>Description: {{ trip.description }}</p>
+<p>Departure date: {{ trip.travel_date_from }}</p>
+<p>Return date: {{ trip.travel_date_to }}</p>
+<a href="/join/{{trip.id}}">Join Trip</a>
+<h4>Users Going on this Trip: </h4>
+{% for user in users %}
+<p>{{ user.first_name }}</p>
+{% endfor %}
+<a href="/dashboard">Go back</a>
+<a href="/logout">Log out</a>
+</html>

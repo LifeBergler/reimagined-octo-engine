@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+ <html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login and Registration</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/login_app/style.css' %}" media="screen" title="styler" charset="utf-8">
+  </head>
+  <body>
+    {% if messages %}
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+    <h3>Register Here</h3>
+    <form action="/register" method="POST">
+      {% csrf_token %}
+      <input type="text" name="first_name" placeholder="Enter first name!"><br>
+      <input type="text" name="last_name" placeholder="Enter last name!"><br>
+      <input type="text" name="email" placeholder="Enter your email"><br>  <p>Password should be at least 8 characters!</p>
+      <input type="password" name="password" placeholder="Enter password!"><br>
+      <input type="password" name="c_password" placeholder="Confirm password!"><br>
+      <input type="submit" value="Register">
+    </form>
+    <h3>Login</h3>
+    <form action="/login" method="POST">
+      {% csrf_token %}
+      <input type="text" name="email" placeholder="Enter your email"><br>      
+      <input type="password" name="password" placeholder="Enter password!"><br>
+      <input type="submit" value="Login">
+    </form>
+    
+    
+  </body>
+</html>

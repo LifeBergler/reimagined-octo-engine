@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Add a New Travel Plan</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/login_app/style.css' %}" media="screen" title="styler" charset="utf-8">
+</head>
+<body>
+  <h3>Add a New Travel Plan</h3>
+  {% if messages %}
+  {% for message in messages %}
+    <p>{{ message }}</p>
+  {% endfor %}
+  {% endif %}
+  <form action = "/create", method="POST">
+    {% csrf_token %}
+    <input type="text" name="destination" placeholder="Destination"><br>
+    <input type="text" name="description" placeholder="Description"><br>
+    <input type="date" name="travel_date_from" placeholder="Date of Departure"><br>
+    <input type="date" name="travel_date_to" placeholder="Date of Return"><br>
+    <input type="hidden" name="user_id" value="{{request.session.user_id}}">
+    <input type="submit" value="Add Trip">
+  </form>
+  <a href="/dashboard">Back to User Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{% static '/login_app/style.css' %}" media="screen" title="styler" charset="utf-8">
+  <title>Dashboard</title>
+</head>
+<body>
+  <h3>Welcome, {{ request.session.first_name }}</h3>
+  <a href="/logout">Log out</a>
+  <h3>Your Travel Plans</h3>
+  <table>
+    <tr>
+      <th>Destination</th>
+      <th>Travel Start Date</th>
+      <th>Travel End Date</th>
+      <th>Plan</th>
+      <th>Remove Trip?</th>
+    </tr>
+    {% for trip in trips %}
+    <tr>
+      <td><a href="/info/{{trip.id}}">{{ trip.destination }}</a></td>
+      <td>{{ trip.travel_date_from }}</td>
+      <td>{{ trip.travel_date_to }}</td>
+      <td>{{ trip.description }}</td>
+      <td><a href="/untrip/{{trip.id}}">Remove</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <h3>Other User's Travel Plans</h3>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Destination</th>
+      <th>Travel Start Date</th>
+      <th>Travel End Date</th>
+      <th>Do You Want to Join?</th>
+    </tr>
+    {% for trip in other_trips %}
+    <tr>
+      <td><a href="/info/{{trip.id}}">{{ trip.destination }}</a></td>
+      <td>{{ trip.travel_date_from }}</td>
+      <td>{{ trip.travel_date_to }}</td>
+      <td>{{ trip.description }}</td>
+      <td><a href="/join/{{trip.id}}">Join Trip</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <a href="/add_plan">Add New Travel Plan</a>
+</body>
+</html>
